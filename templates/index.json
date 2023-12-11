@@ -7,14 +7,14 @@
         "sec_desc": "All the charts, datepickers, and notifications in the world can't beat checking off some items on a paper card.",
         "sec_img": "shopify:\/\/shop_images\/home-page-02-hero-half-width.jpg",
         "btn_url": "shopify:\/\/collections\/all",
-        "btn_text": "Shop Creativity"
+        "btn_text": "商品を見る"
       }
     },
     "template-featured-products": {
       "type": "template-featured-products",
       "settings": {
-        "sec_ttl": "Trending products",
-        "link_text": "See everything",
+        "sec_ttl": "おすすめ商品",
+        "link_text": "すべての商品を見る",
         "link_url": "shopify:\/\/collections\/all",
         "featured_collection": "おすすめ商品",
         "number_of_products_to_show": 4

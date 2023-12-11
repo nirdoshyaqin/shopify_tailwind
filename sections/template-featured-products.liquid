@@ -46,7 +46,14 @@
                       {{ product.title }}
                     </a>
                   </h3>
-                  <p class="mt-1 text-gray-900">{{ product.price | money }}</p>
+                  <p class="mt-1 text-gray-900 flex items-center justify-center">
+                    {{ product.price | money }}
+                    <span class="ml-4">
+                      {% if product.price > 500000 %}
+                        {% render 'icon-free-shipping-mini' %}
+                      {% endif -%}
+                    </span>
+                  </p>
                 </div>
               </div>
 

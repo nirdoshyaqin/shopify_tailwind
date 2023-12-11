@@ -1,7 +1,7 @@
 {
   "sections": {
     "template-product": {
-      "type": "template-product-alt",
+      "type": "template-product",
       "settings": {
         "notice_heading": "どのサイズを購入するべきでしょうか？",
         "buy_btn_txt": "購入する",
@@ -9,5 +9,5 @@
       }
     }
   },
-  "order": ["template-product-alt"]
+  "order": ["template-product"]
 }
