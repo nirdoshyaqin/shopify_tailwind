@@ -1,0 +1,82 @@
+{
+  "sections": {
+    "template-mv": {
+      "type": "template-mv",
+      "settings": {
+        "sec_ttl": "Focus on what matters",
+        "sec_desc": "All the charts, datepickers, and notifications in the world can't beat checking off some items on a paper card.",
+        "sec_img": "shopify:\/\/shop_images\/home-page-02-hero-half-width.jpg",
+        "btn_url": "shopify:\/\/collections\/all",
+        "btn_text": "Shop Creativity"
+      }
+    },
+    "template-featured-products": {
+      "type": "template-featured-products",
+      "settings": {
+        "sec_ttl": "Trending products",
+        "link_text": "See everything",
+        "link_url": "shopify:\/\/collections\/all",
+        "featured_collection": "おすすめ商品",
+        "number_of_products_to_show": 4
+      }
+    },
+    "template-collections-list": {
+      "type": "template-collections-list",
+      "settings": {
+        "sec_ttl": "Collections",
+        "number_of_collections_to_show": 4
+      }
+    },
+    "template-promotion": {
+      "type": "template-promotion",
+      "settings": {
+        "heading": "Get 25% off during our one-time sale",
+        "sec_desc": "Most of our products are limited releases that won't come back. Get your favorite items while they're in stock.",
+        "bg_img": "shopify:\/\/shop_images\/home-page-02-sale-full-width.jpg",
+        "btn_url": "",
+        "btn_text": "Get access to our one-time sale"
+      }
+    },
+    "template-testimonials": {
+      "type": "template-testimonials",
+      "blocks": {
+        "3d0e893c-28cc-4b14-bcd9-fbcf3661adf4": {
+          "type": "quote",
+          "settings": {
+            "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.<\/p>",
+            "author": "Author’s name"
+          }
+        },
+        "08aeb62b-0ec5-490c-815c-3ea22eae36fd": {
+          "type": "quote",
+          "settings": {
+            "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.<\/p>",
+            "author": "Author’s name"
+          }
+        },
+        "54be4da0-f659-4458-8ae5-508ed2c2eba3": {
+          "type": "quote",
+          "settings": {
+            "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.<\/p>",
+            "author": "Author’s name"
+          }
+        }
+      },
+      "block_order": [
+        "3d0e893c-28cc-4b14-bcd9-fbcf3661adf4",
+        "08aeb62b-0ec5-490c-815c-3ea22eae36fd",
+        "54be4da0-f659-4458-8ae5-508ed2c2eba3"
+      ],
+      "settings": {
+        "sec_heading": "What are people saying?"
+      }
+    }
+  },
+  "order": [
+    "template-mv",
+    "template-featured-products",
+    "template-collections-list",
+    "template-promotion",
+    "template-testimonials"
+  ]
+}

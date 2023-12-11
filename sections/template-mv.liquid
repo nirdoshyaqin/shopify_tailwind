@@ -1,0 +1,74 @@
+<div class="relative">
+  <div aria-hidden="true" class="absolute hidden h-full w-1/2 bg-gray-100 lg:block"></div>
+  <div class="relative bg-gray-100 lg:bg-transparent">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-2 lg:px-8">
+      <div class="mx-auto max-w-2xl py-24 lg:max-w-none lg:py-64">
+        <div class="lg:pr-16">
+          <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl xl:text-6xl">
+            {{ section.settings.sec_ttl }}
+          </h1>
+          <p class="mt-4 text-xl text-gray-600">
+            {{ section.settings.sec_desc }}
+          </p>
+          <div class="mt-6">
+            <a
+              href="{{ section.settings.btn_url }}"
+              class="inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 font-medium text-white hover:bg-indigo-700"
+            >
+              {{ section.settings.btn_text }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h-48 w-full sm:h-64 lg:absolute lg:top-0 lg:right-0 lg:h-full lg:w-1/2">
+    {% if section.settings.sec_img != blank %}
+      <img
+        src="{{ section.settings.sec_img | img_url: 'large' }}"
+        alt=""
+        class="h-full w-full object-cover object-center"
+      >
+    {% else %}
+      {% assign placeholder_image = 'lifestyle-1' %}
+      {{ placeholder_image | placeholder_svg_tag: 'h-full w-full object-cover object-center' }}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "メインビジュアル",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sec_ttl",
+      "default": "Focus on what matters",
+      "label": "タイトル"
+    },
+    {
+      "type": "text",
+      "id": "sec_desc",
+      "default": "All the charts, datepickers, and notifications in the world can't beat checking off some items on a paper card.",
+      "label": "説明文章"
+    },
+    {
+      "type": "image_picker",
+      "id": "sec_img",
+      "label": "画像"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "default": "/collections/all",
+      "label": "ボタンリンクURL"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "default": "Shop Creativity",
+      "label": "ボタンテキスト"
+    }
+  ]
+}
+{% endschema %}

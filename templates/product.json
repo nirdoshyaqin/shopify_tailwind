@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "template-product": {
+      "type": "template-product-alt",
+      "settings": {
+        "notice_heading": "どのサイズを購入するべきでしょうか？",
+        "buy_btn_txt": "購入する",
+        "guarantee_heading": "永久保証"
+      }
+    }
+  },
+  "order": ["template-product-alt"]
+}

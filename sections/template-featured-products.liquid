@@ -1,0 +1,130 @@
+<section aria-labelledby="trending-heading" class="bg-white">
+  <div class="py-16 sm:py-24 lg:mx-auto lg:max-w-7xl lg:py-32 lg:px-8">
+    <div class="flex items-center justify-between px-4 sm:px-6 lg:px-0">
+      <h2 id="trending-heading" class="text-2xl font-bold tracking-tight text-gray-900">
+        {{ section.settings.sec_ttl }}
+      </h2>
+      <a
+        href="{{ section.settings.link_url }}"
+        class="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block"
+      >
+        {{ section.settings.link_text }}
+        <span aria-hidden="true"> →</span>
+      </a>
+    </div>
+
+    <div class="relative mt-8">
+      <div class="relative w-full overflow-x-auto">
+        <ul
+          role="list"
+          class="mx-4 inline-flex space-x-8 sm:mx-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-8 lg:space-x-0"
+        >
+          {% for product in section.settings.featured_collection.products
+            limit: section.settings.number_of_products_to_show
+          %}
+            <li class="inline-flex w-64 flex-col text-center lg:w-auto">
+              <div class="group relative">
+                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
+                  {% if product.featured_image %}
+                    <img
+                      src="{{ product.featured_image | img_url: 'medium' }}"
+                      alt="{{ product.featured_image.alt }}"
+                      class="h-full w-full object-cover object-center group-hover:opacity-75"
+                    >
+                  {% else %}
+                    {{
+                      'product-2'
+                      | placeholder_svg_tag: 'h-full w-full object-cover object-center group-hover:opacity-75'
+                    }}
+                  {% endif %}
+                </div>
+                <div class="mt-6">
+                  <p class="text-sm text-gray-500">{{ product.selected_or_first_available_variant.title }}</p>
+                  <h3 class="mt-1 font-semibold text-gray-900">
+                    <a href="{{product.url }}">
+                      <span class="absolute inset-0"></span>
+                      {{ product.title }}
+                    </a>
+                  </h3>
+                  <p class="mt-1 text-gray-900">{{ product.price | money }}</p>
+                </div>
+              </div>
+
+              <h4 class="sr-only">Available colors</h4>
+              <ul role="list" class="mt-auto flex items-center justify-center space-x-3 pt-6">
+                <li
+                  class="h-4 w-4 rounded-full border border-black border-opacity-10"
+                  style="background-color: #111827"
+                >
+                  <span class="sr-only"> Black </span>
+                </li>
+
+                <li
+                  class="h-4 w-4 rounded-full border border-black border-opacity-10"
+                  style="background-color: #fde68a"
+                >
+                  <span class="sr-only"> Brass </span>
+                </li>
+
+                <li
+                  class="h-4 w-4 rounded-full border border-black border-opacity-10"
+                  style="background-color: #e5e7eb"
+                >
+                  <span class="sr-only"> Chrome </span>
+                </li>
+              </ul>
+            </li>
+          {% endfor %}
+          <!-- More products... -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 px-4 sm:hidden">
+      <a href="{{ section.settings.link_url }}" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">
+        {{ section.settings.link_text }}
+
+        <span aria-hidden="true"> →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "おすすめ商品",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sec_ttl",
+      "default": "Trending products",
+      "label": "タイトル"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "default": "See everything",
+      "label": "リンクテキスト"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "default": "/collections/all",
+      "label": "リンクURL"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "コレクション"
+    },
+    {
+      "type": "range",
+      "id": "number_of_products_to_show",
+      "min": 4,
+      "max": 12,
+      "default": 4,
+      "label": "Number of products to show"
+    }
+  ]
+}
+{% endschema %}
