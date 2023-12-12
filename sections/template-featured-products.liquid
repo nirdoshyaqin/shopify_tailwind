@@ -49,9 +49,13 @@
                   <p class="mt-1 text-gray-900 flex items-center justify-center">
                     {{ product.price | money }}
                     <span class="ml-4">
-                      {% if product.price > 500000 %}
-                        {% render 'icon-free-shipping-mini' %}
-                      {% endif -%}
+                      {%- for tag in product.tags -%}
+                        {% if tag contains '送料無料' %}
+                          <span class="{% unless forloop.last%}mr-2{% endunless %} inline-block">
+                            {% render 'icon-free-shipping-mini' %}
+                          </span>
+                        {% endif %}
+                      {% endfor %}
                     </span>
                   </p>
                 </div>

@@ -36,15 +36,14 @@
 
       <section aria-labelledby="information-heading" class="mt-4">
         <h2 id="information-heading" class="sr-only">商品の情報</h2>
+        <div class="flex items-center">
+          <p class="text-lg text-gray-900 sm:text-xl">
+            {{- product.price | divided_by: 1.1 | money }}（税別）<span class="text-sm">
+              {{- product.price | money }} （税込）</span
+            >
+          </p>
 
-        {% comment %}
-          <div class="flex items-center">
-            <p class="text-lg text-gray-900 sm:text-xl">
-              {{ product.price | money }}（税別）<span class="text-sm">
-                {{- product.price | times: 1.1 | money }}（税込）</span
-              >
-            </p>
-
+          {% comment %}
             <div class="ml-4 border-l border-gray-300 pl-4">
               <h2 class="sr-only">レビュー</h2>
               <div class="flex items-center">
@@ -107,11 +106,29 @@
                 <p class="ml-2 text-sm text-gray-500">1624 reviews</p>
               </div>
             </div>
-          </div>
-        {% endcomment %}
-        {% if product.price > 500000 %}
-          <p>送料無料です</p>
-        {% endif %}
+          {% endcomment %}
+        </div>
+        <div class="flex items-center">
+          {%- for tag in product.tags -%}
+            {% if tag contains '送料無料' %}
+              <span class="{% unless forloop.last%}mr-2{% endunless %} inline-block">
+                {% render 'icon-free-shipping-mini' %}
+              </span>
+            {% endif %}
+            {% if tag contains 'info_' %}
+              {% assign tag_array = tag | split: '_' %}
+              <span
+                class="mr-2 text-white text-xs font-medium me-2 px-3 py-1.5 rounded-full"
+                style="background: {%- if tag_array.size == 3 -%}{{ tag_array[1]}};{%- else -%}red;{%- endif -%}"
+              >
+                {{ tag_array | last }}
+              </span>
+            {% endif %}
+            <!-- /.custom-product-label -->
+          {% endfor %}
+        </div>
+        <!-- /.flex -->
+
         <div class="mt-4 space-y-6">
           <p class="text-base text-gray-500">
             {{ product.description }}
@@ -148,11 +165,6 @@
     <!-- Product image -->
 
     <div class="relative mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
-      {% if product.price > 500000 %}
-        <div class="absolute z-10 top-0 right-0">
-          {% render 'icon-free-shipping' %}
-        </div>
-      {% endif %}
       <div class="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg">
         <img
           src="{{product.featured_image | img_url: 'master'}}"
@@ -180,7 +192,7 @@
           </a>
         </div>
 
-        {% form 'product' selected_variant %}
+        {% form 'product' product %}
           <input
             type="submit"
             class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"

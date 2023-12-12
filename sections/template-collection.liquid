@@ -586,11 +586,26 @@
           <h3 class="mt-4 text-sm text-gray-700">{{ product.title }}</h3>
           <p class="mt-1 text-lg font-medium text-gray-900 flex items-center">
             {{ product.price | money -}}
-            <span class="ml-4">
-              {% if product.price > 500000 %}
-                {% render 'icon-free-shipping-mini' %}
-              {% endif -%}
-            </span>
+            <div class="flex items-center">
+              {%- for tag in product.tags -%}
+                {% if tag contains '送料無料' %}
+                  <span class="{% unless forloop.last%}mr-2{% endunless %} inline-block">
+                    {% render 'icon-free-shipping-mini' %}
+                  </span>
+                {% endif %}
+                {% if tag contains 'info_' %}
+                  {% assign tag_array = tag | split: '_' %}
+                  <span
+                    class="mr-2 text-white text-xs font-medium me-2 px-3 py-1.5 rounded-full"
+                    style="background: {%- if tag_array.size == 3 -%}{{ tag_array[1]}};{%- else -%}red;{%- endif -%}"
+                  >
+                    {{ tag_array | last }}
+                  </span>
+                {% endif %}
+                <!-- /.custom-product-label -->
+              {% endfor %}
+            </div>
+            <!-- /.flex -->
           </p>
         </a>
       {% else %}
